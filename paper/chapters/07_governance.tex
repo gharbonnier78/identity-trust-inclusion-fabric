@@ -1,0 +1,115 @@
+\chapter{Governance, Rights, Security, and Assurance}
+
+\section{A trust platform must not become a surveillance platform}
+
+The internal analogy of a ``Palantir for identity'' describes ontology, evidence fusion, relational investigation, and traceability. It is unsafe as an unconstrained product doctrine. A centralized graph of citizen activity, permanent cross-domain identifiers, opaque suspicion scores, or unrestricted secondary use would contradict the stated mission.
+
+The external doctrine is therefore \emph{federated assurance}: authoritative sources retain their records, proofs are purpose-limited, linkage is scoped, and citizens can understand and challenge consequential outcomes.
+
+\section{Purpose and proportionality gate}
+
+Before integration or model development, a cross-functional authority records:
+
+\begin{itemize}
+\item legitimate purpose and protected decision;
+\item necessity of identity, credential, and biometric evidence;
+\item less intrusive alternatives;
+\item affected persons, including those not considered direct users;
+\item plausible harms, misuse, and purpose drift;
+\item legal basis, retention, access, and cross-domain sharing;
+\item alternative path, contestation, remedy, and accountability;
+\item GO, GO WITH RESTRICTIONS, PILOT, REDESIGN, or NO-GO outcome.
+\end{itemize}
+
+NIST SP 800-63A-4 requires a documented fraud-management programme and privacy-risk assessment for fraud controls \citep{nist63a4}. NIST federation guidance also emphasizes accessible redress \citep{nist63c4}. These controls are not compliance decorations; they are system requirements.
+
+\section{Privacy architecture}
+
+The data-minimization hierarchy is:
+
+\begin{enumerate}
+\item cryptographic or authoritative yes/no proof;
+\item selectively disclosed attribute;
+\item derived and purpose-scoped risk feature;
+\item pseudonymous event;
+\item source record only where necessary and authorized;
+\item raw or reusable biometric material only inside its dedicated protected subsystem.
+\end{enumerate}
+
+Biometric samples and templates are prohibited from general logs, traces, analytics lakes, model prompts, and graph exports. Telemetry contains pseudonymous correlation identifiers, model and policy versions, reason codes, latency, and evidence availability.
+
+\section{Security and abuse cases}
+
+The platform must defend against external attack and institutional misuse:
+
+\begin{itemize}
+\item forged or replayed credentials and status responses;
+\item presentation, injection, deepfake, and sensor bypass;
+\item compromised issuer, verifier, device, operator, or model supply chain;
+\item graph poisoning, fabricated edges, and coordinated low-and-slow abuse;
+\item model extraction, evasion, and inference about protected records;
+\item insider browsing and unauthorized cross-domain linkage;
+\item policy manipulation and threshold drift;
+\item suppression of corrections or incomplete downstream repair;
+\item use of inclusion telemetry to penalize people who encountered barriers.
+\end{itemize}
+
+Security controls include signed evidence bundles, mutual authentication, hardware-backed key protection where appropriate, least privilege, purpose-bound authorization, tamper-evident audit, separation of duties, rate limiting, privacy-preserving analytics, supply-chain inventories, and tested incident response.
+
+\section{Human review and operator protection}
+
+Human review is not a universal remedy. Reviewers can suffer automation bias, time pressure, incomplete evidence, hindsight bias, or organizational incentives. The cockpit must show:
+
+\begin{itemize}
+\item evidence source and quality;
+\item what is missing;
+\item model confidence and calibration limits;
+\item rule and policy reasons;
+\item alternative benign explanations;
+\item similar cleared and confirmed cases where lawful;
+\item allowed actions and escalation path;
+\item an explicit option to disagree or mark insufficient evidence.
+\end{itemize}
+
+Operator actions are attributed accurately, but the system must not convert reasonable use of an approved procedure into personal blame. Provenance separates model recommendation, policy constraint, evidence availability, operator decision, and supervisory approval.
+
+\section{Fairness and inclusion assurance}
+
+Fairness is evaluated across the full pipeline: acquisition, quality, PAD, matching, fusion, credential verification, action, waiting time, reviewer decision, remedy, and downstream propagation. Relevant indicators include failure to acquire, false non-match, repeated evidence requests, manual-review rate, completion, delay, abandonment, appeal, overturn, and repair time.
+
+Segment analysis must be lawful and privacy-protective. It should diagnose systems rather than create new adverse features. A difference is investigated through sensor, site, channel, process, and data mechanisms. Pure aggregate parity is insufficient; individual cases and intersectional patterns require review.
+
+\section{Assurance case}
+
+The production decision is supported by a structured assurance case:
+
+\begin{description}
+\item[Claim.] The Fabric supports the declared identity or credential decision with acceptable residual fraud and exclusion risk.
+\item[Argument.] Evidence sources are fit for purpose; models are validated; actions are proportionate; monitoring detects drift; remedy is accessible and effective.
+\item[Evidence.] Requirements, threat model, data card, model card, test results, calibration, segment analysis, operational rehearsal, incident and rollback tests, accessibility assessment, and independent review.
+\end{description}
+
+Evidence is versioned. A change in matcher, sensor, issuer trust list, credential format, model, feature pipeline, threshold, or review policy can invalidate part of the assurance case and trigger targeted re-evaluation.
+
+\section{Accountability model}
+
+\begin{table}[htbp]
+\centering
+\caption{Minimum accountability roles.}
+\begin{tabularx}{\textwidth}{p{36mm}Y}
+\toprule
+Role & Primary accountability\\
+\midrule
+Purpose owner & necessity, proportionality, service outcome, and stop decision\\
+Identity/biometric authority & matcher interpretation, quality, thresholds, and operational semantics\\
+Fraud authority & threat ontology, investigation state, label quality, and feedback\\
+Inclusion/accessibility authority & barriers, alternative path, process redesign, and outcome monitoring\\
+Data protection/legal & lawful basis, minimization, sharing, retention, rights, and impact assessment\\
+Model owner & data, features, validation, calibration, monitoring, and rollback\\
+Decision-policy owner & action bands, human authority, review capacity, and exceptions\\
+Remedy owner & appeal, correction, reprocessing, and propagation completion\\
+Independent assurance & challenge of claims, evidence, conflicts, and residual risk\\
+\bottomrule
+\end{tabularx}
+\end{table}
+

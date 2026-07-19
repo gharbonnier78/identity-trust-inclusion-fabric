@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this research package, please cite it as below."
+title: "Identity Trust & Inclusion Fabric"
+type: software
+version: 0.1.0
+date-released: 2026-07-19
+authors:
+  - family-names: Harbonnier
+    given-names: Guillaume
+repository-code: "https://github.com/gharbonnier78/identity-trust-inclusion-fabric"
+abstract: "A federated identity and credential assurance research package combining biometric evidence fusion, anomaly detection, graph risk, inclusion monitoring, and governed action selection."
+license: Apache-2.0
+

@@ -1,0 +1,99 @@
+\chapter{From an Empty Architecture Box to a Trust Capability}
+
+\section{The architectural symptom}
+
+Large identity programmes frequently show a box called \emph{Fraud Detection}. The box may be connected to biometric matching, enrollment, authentication, or credential issuance, but the label alone does not define a system. It does not identify the protected decision, the fraud scenarios, the evidence to be consumed, the actions to be authorized, the acceptable review burden, or the person responsible when an alert is wrong.
+
+This ambiguity creates a false sense of completeness. An architecture diagram communicates that fraud has been addressed, while engineering teams cannot derive an interface, a test oracle, or a service-level objective. The correct first move is therefore not model selection. It is a conversion from noun to capability:
+
+\begin{equation}
+\text{Fraud Detection box}
+\longrightarrow
+\left\{
+\begin{array}{l}
+\text{purpose and threat ontology},\\
+\text{evidence and provenance contract},\\
+\text{risk and uncertainty model},\\
+\text{action and review policy},\\
+\text{feedback, remedy, and assurance loop}.
+\end{array}
+\right.
+\end{equation}
+
+The intended system is not a new biometric matcher. It is a post-matcher and cross-credential decision layer. Existing face, fingerprint, optional iris, PAD, document, registry, device, and wallet components remain authoritative for their bounded functions. The new layer reasons about their consistency, limitations, relationships, and operational consequences.
+
+\section{Identity is broader than biometric matching}
+
+A biometric comparison answers a narrow question: how compatible is a probe with a reference under a particular algorithm, sensor, quality condition, and threshold? It does not alone establish legal identity, entitlement, professional qualification, issuer legitimacy, credential status, or the absence of coercion and process error. Conversely, a cryptographically valid credential proves integrity and an issuer statement; it does not by itself prove that the presenter is the legitimate holder or that the issuer's underlying process was sound.
+
+The assurance object is therefore a structured claim:
+
+\begin{equation}
+\mathcal{C}=(\text{subject},\text{claim},\text{issuer},\text{holder},\text{evidence},\text{context},\text{time},\text{purpose}).
+\end{equation}
+
+The system must reason about the relation between these elements, not reduce identity to one score.
+
+\section{The ecosystem boundary}
+
+The product opportunity extends beyond one company's tools. It spans:
+
+\begin{itemize}
+\item public authorities operating civil, national identity, passport, residence, election, and licensing systems;
+\item biometric and document suppliers providing component evidence;
+\item universities, professional bodies, employers, and certification authorities issuing credentials;
+\item telecommunications operators, banks, insurers, transport, health, and other relying parties;
+\item citizens holding, presenting, correcting, and contesting identity and credential information.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=5mm and 10mm, every node/.style={font=\scriptsize}, box/.style={draw=TrustBlue,rounded corners,fill=TrustLight,minimum width=28mm,minimum height=9mm,align=center}, core/.style={draw=TrustViolet,very thick,rounded corners,fill=TrustNavy,text=white,minimum width=42mm,minimum height=16mm,align=center}]
+\node[box] (gov) {Public authorities\\and registries};
+\node[box,below=of gov] (issuer) {Credential issuers\\and professional bodies};
+\node[core,right=14mm of gov,yshift=-7mm] (fabric) {Identity Trust \&\\Inclusion Fabric};
+\node[box,right=14mm of fabric,yshift=7mm] (private) {Telcos, banks, services\\and relying parties};
+\node[box,below=of private] (citizen) {Citizens, wallets,\\appeal and correction};
+\draw[-{Latex},thick] (gov) -- (fabric);
+\draw[-{Latex},thick] (issuer) -- (fabric);
+\draw[-{Latex},thick] (private) -- (fabric);
+\draw[-{Latex},thick] (citizen) -- (fabric);
+\draw[-{Latex},thick] (fabric) -- (private);
+\draw[-{Latex},thick] (fabric) -- (citizen);
+\end{tikzpicture}
+\caption{The Fabric is an assurance layer across domains, not a replacement for their authoritative systems.}
+\label{fig:ecosystem}
+\end{figure}
+
+\section{Fraud and exclusion are dual system risks}
+
+Security programmes naturally optimize the probability of admitting an attacker. Identity programmes also create the opposite harm: denying or delaying a legitimate person's access to identity, connectivity, qualification, benefits, mobility, or work. Exclusion may be produced by a poor sensor, inaccessible interface, missing alternative path, repeated document loop, obsolete record, migration conflict, over-conservative threshold, or under-resourced review process.
+
+The engineering objective must consequently be dual:
+
+\begin{equation}
+\min_{\pi}\; \lambda_F C_F + \lambda_E C_E + \lambda_X C_X + \lambda_H C_H + \lambda_P C_P,
+\label{eq:dual-objective}
+\end{equation}
+
+where $C_F$ is residual fraud cost, $C_E$ exclusion cost, $C_X$ legitimate-user friction, $C_H$ scarce human effort, and $C_P$ privacy intrusion. The action policy $\pi$ is constrained by assurance, law, purpose, review capacity, service time, and the existence of an accessible remedy.
+
+This is not an assertion that every cost can be monetized or collapsed into one scalar. Equation~\ref{eq:dual-objective} is a decision aid. Fundamental rights, prohibited uses, minimum safeguards, and non-discrimination remain hard constraints.
+
+\section{Research and industrial question}
+
+The central question is:
+
+\begin{quote}
+How can a system integrator build a federated, purpose-bound identity and credential assurance capability that learns when to trust biometric and credential evidence, detects known and unknown abuse as well as systemic exclusion, requests the least additional evidence necessary, allocates scarce human expertise, and repairs the record when the system is wrong?
+\end{quote}
+
+The industrial question is distinct:
+
+\begin{quote}
+Which parts are repeatable and defensible as a product across government, telecom, regulated industry, professional credentials, and citizen wallets, and which parts must remain customer-specific policy, data, and governance?
+\end{quote}
+
+\section{Scope and exclusions}
+
+The thesis covers score-level and structured evidence, verifiable credentials, process telemetry, graph relationships, decision policy, and remedy. It excludes the creation of a production matcher, the training of biometric recognition models on raw images, a national population database, covert surveillance, generalized AML transaction monitoring, and autonomous determination of criminal guilt. No operational deployment is implied by the demonstrator.

@@ -1,0 +1,60 @@
+\chapter{Experimental and Pilot Protocol}
+
+\section{Primary comparisons}
+
+The pre-registered primary endpoint is fraud recall at a fixed review capacity, accompanied by precision in queue and calibration. The second endpoint is recall on held-out novel fraud. The third is legitimate-user burden reduction at an unchanged maximum residual-risk limit. The fourth is detection and resolution of planted or confirmed exclusion patterns.
+
+\section{Splits}
+
+Use at least three split families:
+
+\begin{enumerate}
+\item temporal train/validation/test;
+\item project, customer, site, issuer, or device-family holdout;
+\item full fraud-ring or campaign holdout.
+\end{enumerate}
+
+A composition holdout combines familiar components in a combination absent from training. Thresholds are chosen on validation only. Test results are reported once per registered experiment family or corrected for repeated selection.
+
+\section{Truth states}
+
+Avoid a premature binary label. The truth matrix contains:
+
+\begin{itemize}
+\item legitimate/cleared;
+\item suspected, evidence incomplete;
+\item attempted known fraud;
+\item attempted novel fraud;
+\item confirmed fraud;
+\item administrative or migration error;
+\item process failure or exclusion;
+\item contested;
+\item overturned and repaired;
+\item unresolved.
+\end{itemize}
+
+Each label includes source, date, confidence, reviewer role, and revision history.
+
+\section{Scenario matrix}
+
+Scenarios vary modality availability, quality, sensor and model version, document and credential status, issuer trust, device reuse, graph structure, time drift, operator exception, migration conflict, review capacity, and process accessibility. Phase 1 uses controlled probabilistic outputs from a Matcher Mock. Phase 2 introduces real matcher outputs from lawful synthetic or reference biometric data. The Gateway and Decision Engine are one integrated component boundary in the original project architecture.
+
+\section{Acceptance criteria}
+
+A pilot advances only if it demonstrates all of the following:
+
+\begin{itemize}
+\item statistically and operationally meaningful improvement over rules and simple baselines;
+\item calibrated usefulness within available review capacity;
+\item stable results across relevant channels, sites, devices, and time;
+\item no unacceptable exclusion or burden pattern;
+\item investigator-useful reasons and structured feedback;
+\item successful appeal, correction, and propagation rehearsal;
+\item privacy, security, rollback, and accountability approval;
+\item repeatable applicability to a second bounded domain.
+\end{itemize}
+
+\section{Reproducibility checklist}
+
+The repository fixes the random seed, data-generation configuration, temporal split, feature list, model parameters, score weights, thresholds, metrics, figures, and LaTeX result macros. CI executes the generator and unit tests. Future experiments should add data and model cards, dataset hashes, environment lock files, signed evidence bundles, and a frozen evaluation manifest.
+

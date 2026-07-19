@@ -1,0 +1,46 @@
+\chapter{Requirements Catalogue}
+
+\footnotesize
+\begin{longtable}{p{15mm}p{31mm}p{70mm}p{19mm}}
+\caption{Initial system requirements.}\label{tab:reqs}\\
+\toprule
+ID & Capability & Requirement & Verification\\
+\midrule
+\endfirsthead
+\toprule
+ID & Capability & Requirement & Verification\\
+\midrule
+\endhead
+PUR-01 & Purpose & Every assessment shall reference an approved purpose and authorized decision. & policy test\\
+PUR-02 & Proportionality & The system shall support REDESIGN and NO-GO outcomes before model deployment. & governance audit\\
+EVD-01 & Evidence & Every signal shall include source, time, quality, context, and version. & schema test\\
+EVD-02 & Missingness & Missing, unavailable, not-applicable, and failed-acquisition states shall remain distinct. & unit test\\
+EVD-03 & Biometrics & Raw samples and reusable templates shall not enter general traces or analytics stores. & security scan\\
+EVD-04 & Credential & Credential evidence shall include issuer, schema, proof, status, dates, and holder-binding method. & conformance test\\
+MOD-01 & Baseline & Rules and simple statistical baselines shall be evaluated before complex models. & experiment report\\
+MOD-02 & Novelty & Anomaly shall be reported as novelty or inconsistency, not confirmed fraud. & UI/policy test\\
+MOD-03 & Graph & Every graph edge shall carry source, time, purpose, and confidence. & graph audit\\
+MOD-04 & Leakage & Rings, campaigns, and future time periods shall not leak across designated holdouts. & split test\\
+MOD-05 & Calibration & Decision-useful scores shall be calibrated on a validation partition. & reliability test\\
+ACT-01 & Abstention & The decision policy shall permit insufficient-evidence and human-review outcomes. & scenario test\\
+ACT-02 & Step-up & Additional evidence shall be selected under necessity, expected utility, accessibility, and cost. & policy simulation\\
+ACT-03 & Adverse action & Anomaly alone shall not authorize an adverse action. & policy test\\
+INC-01 & Inclusion & The system shall monitor attempts, delay, abandonment, manual routing, and alternative paths. & dashboard test\\
+INC-02 & Separation & Inclusion difficulty shall not automatically increase fraud suspicion. & model audit\\
+INC-03 & Accessibility & A non-digital or assisted alternative shall be represented where required by the service. & journey test\\
+HUM-01 & Human review & Reviewers shall see evidence limitations and benign alternative hypotheses. & usability test\\
+HUM-02 & Operator protection & Provenance shall distinguish model, policy, evidence, operator, and supervisor contributions. & trace replay\\
+REM-01 & Appeal & Affected persons shall have an accessible means to challenge consequential outcomes. & service test\\
+REM-02 & Repair & Overturned suspicions shall trigger deterministic correction and propagation tracking. & end-to-end test\\
+PRV-01 & Minimization & Cross-domain exchange shall prefer derived proofs over source-record replication. & privacy review\\
+PRV-02 & No universal score & Scores and linkage keys shall be scoped to purpose and domain. & architecture audit\\
+SEC-01 & Authorization & Evidence access shall be least-privilege, purpose-bound, and audited. & security audit\\
+SEC-02 & Supply chain & Software, model, data, credential, and policy versions shall be inventoried. & BOM verification\\
+OPS-01 & Shadow mode & New models shall run without production effect before controlled support. & deployment gate\\
+OPS-02 & Rollback & Models and policies shall support tested rollback and kill switch. & rehearsal\\
+OPS-03 & Monitoring & Fraud, calibration, drift, capacity, exclusion, and remedy indicators shall be monitored. & SLO test\\
+ASS-01 & Claim boundary & Synthetic and operational evidence shall be visibly separated in all publications. & document review\\
+ASS-02 & Independent review & Production assurance shall include independent challenge. & assurance record\\
+\bottomrule
+\end{longtable}
+\normalsize

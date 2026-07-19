@@ -1,0 +1,103 @@
+\chapter{Research Design and Contributions}
+
+\section{Design-science position}
+
+The work follows a design-science logic: characterize a consequential industrial problem, formulate an artifact, implement a falsifiable proof of function, evaluate it under declared limitations, and derive a controlled path to field validation. The artifact is not one algorithm. It is a socio-technical decision system comprising evidence schemas, models, policy, human roles, process telemetry, remedy, and operational governance.
+
+The unit of success is therefore not ``model accuracy''. It is a demonstrable improvement in a governed identity decision at a controlled cost and harm level.
+
+\section{Research questions}
+
+\begin{description}
+\item[RQ1 --- Evidence.] How can heterogeneous biometric, credential, device, graph, and process evidence be normalized without erasing source-specific uncertainty and provenance?
+\item[RQ2 --- Novelty.] Does adding an anomaly detector improve the discovery of fraud patterns deliberately withheld from supervised learning at a controlled review rate?
+\item[RQ3 --- Relational structure.] Does graph-derived risk add useful information beyond event-level evidence under ring-held-out and temporal splits?
+\item[RQ4 --- Action.] Can a constrained policy reduce unnecessary evidence acquisition and expert work while meeting an identity-risk limit?
+\item[RQ5 --- Inclusion.] Can process anomaly detection identify legitimate-user pathways with excessive attempts, delay, abandonment, or manual routing without using group membership as an adverse decision feature?
+\item[RQ6 --- Remedy.] Can contestation and correction be represented as deterministic, testable state transitions whose propagation is measurable?
+\item[RQ7 --- Product.] Which capabilities generalize across customers and which must remain local policy, data, and accountability?
+\end{description}
+
+\section{Hypotheses}
+
+\begin{description}
+\item[H1.] Rules plus calibrated supervised learning improve recall of confirmed suspicious inconsistencies at a fixed review capacity compared with rules alone.
+\item[H2.] Anomaly detection improves recall on held-out novelty, but only when conditioned or segmented by operational regime.
+\item[H3.] Relational graph evidence improves coordinated-abuse ranking over independent-event models, provided that complete rings and temporal periods are isolated across splits.
+\item[H4.] A selective policy with explicit abstention reduces error among automated decisions compared with forced binary classification.
+\item[H5.] Sequential evidence acquisition reduces average friction and acquisition cost while respecting a maximum residual-risk constraint.
+\item[H6.] Process telemetry detects systemic exclusion patterns that security-only evaluation misses.
+\item[H7.] Deterministic remedy and record-repair controls reduce the persistence of unsupported adverse states after an overturned suspicion.
+\item[H8.] Component, data, model, human, and policy provenance improves diagnosis under sensor, matcher, issuer, and configuration changes.
+\end{description}
+
+\section{Claim hierarchy}
+
+The thesis distinguishes four levels of evidence:
+
+\begin{enumerate}
+\item \textbf{Executable concept}: interfaces, dataflow, and models run end to end.
+\item \textbf{Synthetic proof of function}: controlled planted patterns are detected under leakage-resistant splits.
+\item \textbf{Retrospective field evidence}: historical operational data show calibrated usefulness without production action.
+\item \textbf{Prospective operational evidence}: shadow and controlled-support pilots demonstrate stable value, non-exclusion, and remedy under real workflows.
+\end{enumerate}
+
+This package reaches levels 1 and 2 only. Product claims require levels 3 and 4.
+
+\section{Contributions}
+
+\subsection{Conceptual contributions}
+
+The first contribution is the dual-risk formulation in which fraud and exclusion are co-equal system failures. The second is the distinction among evidence, anomaly, suspicion, confirmed fraud, administrative error, and adverse action. The third is a federated evidence-graph concept that connects issuers, credentials, holder binding, verifiers, devices, processes, and remedies without requiring a universal citizen graph.
+
+\subsection{Technical contributions}
+
+The technical artifact combines:
+
+\begin{itemize}
+\item a versioned evidence envelope;
+\item supervised known-fraud prediction;
+\item open-set anomaly scoring;
+\item graph-derived relational risk;
+\item process-exclusion anomaly scoring;
+\item calibrated fusion and action bands;
+\item a deterministic remedy state machine;
+\item synthetic generation, temporal holdout, and reproducible evaluation.
+\end{itemize}
+
+\subsection{Industrial contributions}
+
+The industrial artifact provides a product boundary, market whitespace, build--buy--partner decision, requirements canvas, deployment stages, roles, metrics, and investment gates. It deliberately prevents the research thesis from becoming an unbounded platform claim.
+
+\section{Evaluation matrix}
+
+\begin{table}[htbp]
+\centering
+\caption{Evaluation levels and representative questions.}
+\begin{tabularx}{\textwidth}{p{31mm}YY}
+\toprule
+Level & Technical question & Operational question\\
+\midrule
+Signal & Does the score separate planted outcomes? & Is the signal available, lawful, stable, and interpretable?\\
+Fusion & Does combination add value in ablation? & Does it reduce residual risk at fixed burden?\\
+Policy & Are actions consistent with thresholds and constraints? & Is the chosen evidence or review proportionate?\\
+Lifecycle & Does drift or version change degrade calibration? & Can the system roll back and explain decisions?\\
+Remedy & Does correction update all dependent states? & Can a person obtain accessible, timely redress?\\
+Ecosystem & Do federated proofs interoperate? & Are authority, liability, and purpose clear across organizations?\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Epistemic cautions}
+
+Five confusions are explicitly prohibited:
+
+\begin{align}
+\text{cluster} &\neq \text{real causal regime},\\
+\text{anomaly} &\neq \text{fraud},\\
+\text{graph proximity} &\neq \text{complicity},\\
+\text{valid signature} &\neq \text{true underlying claim},\\
+\text{human review} &\neq \text{absence of automation bias}.
+\end{align}
+
+Labels are generated by socio-technical processes. Investigation effort changes which fraud becomes visible. False suspicion may persist in records and later be treated as ground truth. Evaluation must therefore track label source, certainty, contestation, and repair state.

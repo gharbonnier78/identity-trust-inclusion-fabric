@@ -1,0 +1,124 @@
+\chapter{Federated Product Architecture}
+
+\section{Architectural principles}
+
+The architecture is governed by nine principles:
+
+\begin{enumerate}
+\item \textbf{Purpose before data}: every query is tied to a declared service and authorized decision.
+\item \textbf{Minimum necessary proof}: request a derived claim or proof rather than a full source record when possible.
+\item \textbf{Authoritative data remain authoritative}: the Fabric does not silently become a shadow registry.
+\item \textbf{No universal person score}: assessments are transaction-, credential-, and purpose-specific.
+\item \textbf{Evidence is versioned}: source, time, quality, policy, and model provenance are inseparable from a score.
+\item \textbf{Anomaly is a hypothesis}: it triggers investigation or step-up, not guilt.
+\item \textbf{Inclusion is observable}: delay, repetition, abandonment, alternative paths, and remedies are instrumented.
+\item \textbf{Humans are governed components}: roles, evidence views, workload, overrides, and protection are designed and evaluated.
+\item \textbf{Correction propagates}: an overturned decision must repair dependent states and verify completion.
+\end{enumerate}
+
+\section{Layered view}
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[node distance=5mm, every node/.style={font=\small}, layer/.style={draw=TrustBlue,rounded corners,fill=TrustLight,minimum width=145mm,minimum height=10mm,align=center}]
+\node[layer] (sources) {Authoritative registries $\cdot$ matchers $\cdot$ PAD $\cdot$ issuers $\cdot$ wallets $\cdot$ devices $\cdot$ process telemetry};
+\node[layer,above=of sources] (gateway) {Evidence Gateway: schema, provenance, quality, privacy, consent/purpose and component-trust validation};
+\node[layer,above=of gateway] (graph) {Federated Trust Graph: subject/pseudonym, credential, issuer, verifier, device, event, policy, decision, remedy};
+\node[layer,above=of graph] (analytics) {Risk Lab: rules $+$ supervised model $+$ anomaly model $+$ graph model $+$ inclusion observatory};
+\node[layer,above=of analytics] (policy) {Action Orchestrator: approve $\rightarrow$ monitor $\rightarrow$ step-up $\rightarrow$ human review $\rightarrow$ escalate};
+\node[layer,above=of policy] (remedy) {Evidence Cockpit and Remedy Engine: explanation, appeal, correction, reprocessing, propagation and audit};
+\draw[-{Latex},thick] (sources) -- (gateway);
+\draw[-{Latex},thick] (gateway) -- (graph);
+\draw[-{Latex},thick] (graph) -- (analytics);
+\draw[-{Latex},thick] (analytics) -- (policy);
+\draw[-{Latex},thick] (policy) -- (remedy);
+\end{tikzpicture}
+}
+\caption{Reference architecture. Each layer has independent evidence and assurance obligations.}
+\label{fig:architecture}
+\end{figure}
+
+\section{Evidence envelope}
+
+Every observation is carried in an envelope rather than as an anonymous scalar:
+
+\begin{equation}
+e=\langle id,type,value,quality,source,time,context,purpose,version,confidence,access\rangle.
+\end{equation}
+
+For a fingerprint matcher score, the envelope includes matcher and model version, sensor, finger positions, aggregation method, image-quality measures, threshold policy, missing-finger semantics, and whether the value was obtained from a Matcher Mock or a real matcher. For a credential, it includes issuer identifier, schema, proof format, issuance and expiry, status method, accreditation reference, disclosed claims, holder-binding method, and verifier request purpose.
+
+This prevents a common failure: interpreting the same numeric score as equivalent across suppliers, versions, contexts, or populations.
+
+\section{Trust graph ontology}
+
+The graph is heterogeneous and temporal. Candidate node types include subject pseudonyms, credentials, issuers, verifiers, wallets, devices, services, processes, evidence bundles, policies, decisions, reviews, and remedies. Edge types include \emph{issued-by}, \emph{presented-by}, \emph{verified-at}, \emph{bound-to}, \emph{derived-from}, \emph{reviewed-by}, \emph{overturned-by}, and \emph{repaired-at}.
+
+Every edge has time, source, purpose, confidence, and retention metadata. Cross-domain linkage uses scoped pseudonyms or privacy-preserving matching. The design rejects a permanent global key joining all citizen activity.
+
+\section{Action orchestration}
+
+Let $b$ denote available evidence and $a$ a candidate action. A decision policy selects
+
+\begin{equation}
+\pi(b)=\arg\min_{a\in\mathcal{A}}\; \mathbb{E}[C(a,Y)\mid b]
+\end{equation}
+
+subject to mandatory controls. The action set can be
+
+\begin{equation}
+\begin{split}
+\mathcal{A}=\{&approve,monitor,request\_finger,request\_face,\\
+              &verify\_credential,human\_review,escalate\}.
+\end{split}
+\end{equation}
+
+The policy can request evidence expected to reduce uncertainty most per unit cost. It must also allow ``cannot decide'' and ``alternative accessible path'' states. A block or administrative adverse action is never derived merely from a novelty score.
+
+\section{Remedy and record repair}
+
+Earlier \emph{Beyond the Matcher} work introduced CETRA-R: capture, evaluate, treat, review, appeal, and repair. The Fabric turns remedy into an executable state machine:
+
+\begin{equation}
+\begin{aligned}
+s_0=suspected&\rightarrow s_1=reviewed\\
+&\rightarrow
+\begin{cases}
+s_2=confirmed,\\
+s_3=overturned\rightarrow s_4=repaired\\
+\hspace{22mm}\rightarrow s_5=propagation\_verified.
+\end{cases}
+\end{aligned}
+\end{equation}
+
+Repair is not deletion of audit history. It is preservation of the original evidence and decision while ensuring that unsupported adverse labels no longer drive future decisions. The system records affected relying parties, reprocessing policy, notification basis, completion, and residual exceptions.
+
+\section{Deployment topology}
+
+The architecture supports three domains:
+
+\begin{itemize}
+\item \textbf{Open}: public schemas, trust lists, non-sensitive standards, and published model documentation;
+\item \textbf{Sovereign}: government or regulated-customer evidence and models, on-premise or controlled cloud;
+\item \textbf{Restricted}: raw biometrics, investigative data, secret linkage, cryptographic keys, and legally constrained intelligence.
+\end{itemize}
+
+Only approved derived signals cross boundaries. Model training can be local, federated, or based on synthetic scenarios. Observability transports pseudonymous trace identifiers and metric aggregates, never reusable biometric payloads.
+
+\section{Integration with existing systems}
+
+The Fabric integrates rather than replaces:
+
+\begin{itemize}
+\item ABIS and matchers for biometric comparison;
+\item PAD and injection detectors for capture assurance;
+\item document and credential validators;
+\item wallets and OpenID4VC protocols;
+\item registries and trust lists;
+\item case-management and investigation systems;
+\item OpenTelemetry-compatible observability and evidence stores;
+\item DMN or policy-as-code decision services.
+\end{itemize}
+
+The first interface contract should be implemented before any ML model: it is the stable product seam across suppliers and customer-specific policies.

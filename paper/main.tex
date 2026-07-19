@@ -1,0 +1,113 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=26mm,headheight=15pt]{geometry}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,tabularx,array,multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\definecolor{TrustBlue}{HTML}{0B5FFF}
+\definecolor{TrustNavy}{HTML}{10233F}
+\definecolor{TrustViolet}{HTML}{6A42D8}
+\definecolor{TrustGreen}{HTML}{178A63}
+\definecolor{TrustOrange}{HTML}{DB6B26}
+\definecolor{TrustLight}{HTML}{F2F6FC}
+\definecolor{TrustGray}{HTML}{5D6876}
+
+\hypersetup{
+  pdftitle={Identity Trust and Inclusion Fabric},
+  pdfauthor={Guillaume Harbonnier},
+  pdfsubject={Executive Master Thesis and Industrial Product Proposal},
+  pdfkeywords={identity, biometrics, verifiable credentials, anomaly detection, graph neural networks, inclusion}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Identity Trust \& Inclusion Fabric}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\titleformat{\chapter}[display]{\bfseries\color{TrustNavy}}{\filleft\Large\chaptername\ \thechapter}{1ex}{\titlerule\vspace{1ex}\Huge}
+\titleformat{\section}{\Large\bfseries\color{TrustNavy}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{TrustBlue}}{\thesubsection}{0.7em}{}
+\setstretch{1.17}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=1.7em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newcommand{\product}{Identity Trust \& Inclusion Fabric}
+\newcommand{\claimboundary}{\textbf{Claim boundary.} All experimental data and reported proof-of-function results are synthetic. They do not estimate operational fraud, biometric, fairness, or inclusion performance.}
+\input{generated/results.tex}
+
+\begin{document}
+
+\begin{titlepage}
+\pagecolor{TrustNavy}
+\color{white}
+\vspace*{18mm}
+{\Large EXECUTIVE MASTER THESIS AND INDUSTRIAL PRODUCT PROPOSAL\par}
+\vspace{15mm}
+{\Huge\bfseries Identity Trust \& Inclusion Fabric\par}
+\vspace{5mm}
+{\LARGE Beyond the Matcher: Federated Assurance for Biometrics, Credentials, Fraud, and Inclusive Access\par}
+\vfill
+\begin{tikzpicture}
+\node[draw=white,rounded corners=5pt,minimum width=\textwidth-15mm,minimum height=43mm,align=center,line width=0.7pt] {
+\Large A privacy-preserving evidence and decision fabric\\[3mm]
+\normalsize known fraud $\cdot$ unknown anomaly $\cdot$ relational risk $\cdot$ systemic exclusion\\[2mm]
+\normalsize human agency $\cdot$ contestability $\cdot$ record repair
+};
+\end{tikzpicture}
+\vfill
+{\Large Guillaume Harbonnier\par}
+{\large Version 0.1.0 --- Research Draft --- 19 July 2026\par}
+\vspace{8mm}
+{\small Not peer reviewed. Synthetic research demonstrator. No operational use without customer-specific validation, lawful governance, and independent review.\par}
+\end{titlepage}
+\nopagecolor
+\color{black}
+
+\frontmatter
+\input{chapters/00_abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+\input{chapters/01_problem}
+\input{chapters/02_foundations}
+\input{chapters/03_research}
+\input{chapters/04_architecture}
+\input{chapters/05_models}
+\input{chapters/06_experiment}
+\input{chapters/07_governance}
+\input{chapters/08_product}
+\input{chapters/09_roadmap}
+\input{chapters/10_conclusion}
+
+\appendix
+\input{chapters/A_requirements}
+\input{chapters/B_protocol}
+\input{chapters/C_traceability}
+
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

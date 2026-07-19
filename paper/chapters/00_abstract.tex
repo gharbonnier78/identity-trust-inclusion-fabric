@@ -1,0 +1,29 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Identity ecosystems are assembled from capable but fragmented components: biometric matchers, presentation-attack detection, document inspection, authoritative registries, digital wallets, credential issuers, rules, fraud platforms, and human investigators. Yet the architecture often retains an uninstantiated box labelled \emph{Fraud Detection}. It has no agreed threat ontology, evidence contract, decision authority, feedback loop, or measure of harm to legitimate people. This thesis asks how that empty box can become a governed industrial capability without becoming a surveillance platform.
+
+We propose the \product: a federated, purpose-bound evidence and decision layer spanning public authorities, private biometric suppliers, telecommunications operators, professional credential issuers, relying parties, and citizens. It combines four complementary signals: supervised detection of known fraud, density- or isolation-based detection of novel anomalies, graph-based relational risk, and process anomaly detection for systemic exclusion. The output is not a universal citizen score and not an automatic accusation. It is a transaction-specific, calibrated assessment that selects the least intrusive effective action: approve, monitor, request additional evidence, allocate human expertise, or escalate under explicit policy.
+
+The research extends four earlier lines of work: \emph{Beyond the Matcher}, a calibrated human--AI multibiometric decision and remedy framework; a Biometric Fraud Simulation Framework using synthetic scenarios, a Matcher Mock, a real matcher phase, and a truth matrix; a National Identity Fraud Risk Engine using identity--device--IP graphs and GNNs; and anomaly detection as open-set modelling of normal behaviour. The extension introduces a trust ontology for verifiable credentials, issuer and holder relationships, a co-equal anti-exclusion objective, deterministic redress and record repair, and a product architecture designed for sovereign or on-premise deployment.
+
+A reproducible synthetic proof of function is provided. It generates score-level biometric, credential, device, graph, and process events; temporally separates train and test data; withholds a class of novel fraud from supervised learning; and evaluates a hybrid random forest, Isolation Forest, relational reuse score, and process-exclusion detector. On a synthetic temporal test set of \TestN{} events, the hybrid reaches ROC AUC \RocAuc{}, average precision \AvgPrecision{}, and \RecallCapacity{} fraud recall at a \ReviewCapacity{} review capacity. Novel-fraud recall is \NovelRecall{}, while the exclusion detector reaches ROC AUC \ExclusionAuc{}. These figures establish pipeline executability only. They do not constitute product-performance claims.
+
+The industrial conclusion is conditional but positive. The market already contains strong component and platform offers; novelty cannot rest on applying machine learning to fraud. The defensible opportunity lies in a vendor-neutral, fingerprint-capable, credential-aware, privacy-preserving orchestration layer that treats legitimate-user exclusion, contestation, and downstream repair as first-class product outcomes. A staged path is proposed from an observability-only beachhead, through shadow-mode anomaly detection and controlled support, to a federated trust graph and governed action orchestration.
+
+\vspace{1em}
+\claimboundary
+
+\chapter*{Executive synthesis}
+\addcontentsline{toc}{chapter}{Executive synthesis}
+
+\begin{tabularx}{\textwidth}{>{\bfseries\color{TrustNavy}}p{34mm}Y}
+Problem & The label ``Fraud Detection'' hides multiple capabilities and gives no guarantee of usefulness, proportionality, or non-exclusion.\\
+Research question & How can a federated identity ecosystem detect known fraud, unknown anomaly, relational abuse, and systemic exclusion while minimizing evidence acquisition, human effort, delay, and privacy intrusion?\\
+Scientific proposition & Fuse calibrated supervised risk, open-set anomaly, graph risk, and inclusion risk; separate suspicion from guilt; optimize a constrained action policy rather than a binary label.\\
+Product proposition & A sovereign, vendor-neutral Identity Trust \& Inclusion Fabric integrating existing matchers, credentials, registries, wallets, process telemetry, and human review.\\
+Non-negotiable boundary & No universal citizen score, no default centralization of raw biometrics, no adverse decision without purpose, explanation, contestability, and repair.\\
+Initial beachhead & One identity or credential journey in shadow mode, score-level evidence only, controlled review capacity, and measurable fraud/inclusion outcomes.\\
+Investment decision & Proceed to discovery and pilot if a customer supplies decision authority, lawful evidence, review capacity, feedback labels, and a repeatable cross-customer problem.\\
+\end{tabularx}
+

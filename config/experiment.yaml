@@ -1,0 +1,20 @@
+seed: 42
+n_events: 12000
+n_identities: 6500
+n_devices: 1800
+n_issuers: 45
+fraud_rate: 0.055
+novel_fraud_fraction: 0.28
+exclusion_rate: 0.075
+temporal_test_fraction: 0.25
+review_capacity: 0.12
+thresholds:
+  monitor: 0.35
+  step_up: 0.55
+  human_review: 0.72
+  block: 0.90
+weights:
+  supervised: 0.50
+  anomaly: 0.25
+  graph: 0.25
+

@@ -1,0 +1,104 @@
+\chapter{Industrialization Roadmap}
+
+\section{Stage 0: turn the box into a contract}
+
+The first deliverable for the current project is not software. It is a signed Fraud, Trust, and Inclusion Capability Contract defining purpose, scope, ontology, signals, decisions, ground truth, review, service levels, privacy, remedy, and acceptance criteria.
+
+During a four- to six-week discovery, the team conducts threat workshops, maps current evidence, interviews fraud investigators and operators, observes legitimate-user failure journeys, inventories interfaces and versions, and evaluates candidate suppliers. The outcome is a build--buy--partner recommendation and a bounded pilot statement.
+
+\section{Stage 1: evidence observatory}
+
+The first technical release is read-only and non-adverse. It ingests versioned score-level evidence and process telemetry, reconstructs decision traces, and provides dashboards for:
+
+\begin{itemize}
+\item signal completeness and quality;
+\item current rule outcomes;
+\item review load and delay;
+\item repeated legitimate-user failures;
+\item policy and component-version changes;
+\item missing or inconsistent evidence.
+\end{itemize}
+
+This stage creates immediate quality and governance value even if ML does not proceed.
+
+\section{Stage 2: shadow risk lab}
+
+Rules, supervised baselines, anomaly detection, and graph baselines run in parallel with the existing process. No production action consumes their result. The team measures disagreement, false alerts, novelty, calibration, segment stability, review-capacity curves, and process exclusion.
+
+Shadow mode includes an explicit model-risk register, evidence gap review, and red-team scenarios. A model that merely reproduces current rules is not necessarily useless: it may reveal where the claimed innovation does not exist.
+
+\section{Stage 3: controlled support}
+
+The Fabric ranks a bounded queue and recommends the least additional evidence required. Authorized experts retain the decision. Interfaces collect structured feedback: confirmed fraud, cleared suspicion, insufficient evidence, administrative error, process failure, and alternative explanation.
+
+The pilot evaluates human factors: time per case, confidence, disagreement, automation bias, reason usefulness, operator stress, and quality of record repair.
+
+\section{Stage 4: federated credential and graph pilot}
+
+A second organization or credential domain is added. Candidate pilots include diploma or professional credential assurance, telco SIM replacement, or cross-channel identity recovery. OpenID4VC issuance/presentation, credential status, issuer trust, scoped pseudonyms, and graph features are tested without creating a central activity lake.
+
+Interoperability and governance are success criteria equal to model performance.
+
+\section{Stage 5: governed production}
+
+Only low-risk, approved actions are automated initially. Production requires:
+
+\begin{itemize}
+\item model, data, policy, and component registries;
+\item pre-deployment and continuous calibration checks;
+\item drift, latency, capacity, exclusion, and remedy monitoring;
+\item canary, rollback, and kill switch;
+\item independent assurance and periodic red-team exercises;
+\item incident, appeal, and correction service levels;
+\item documented retraining and decommissioning criteria.
+\end{itemize}
+
+\section{Workstreams and team}
+
+\begin{table}[htbp]
+\centering
+\caption{Core workstreams for a pilot.}
+\begin{tabularx}{\textwidth}{p{36mm}Y}
+\toprule
+Workstream & Capabilities\\
+\midrule
+Identity and biometrics & matcher semantics, quality, PAD, score fusion, enrollment and authentication operations\\
+Credential and federation & VC formats, issuer trust, status, wallets, holder binding, interoperability\\
+Fraud and investigation & threat ontology, scenarios, labels, case states, investigator workflow\\
+Data/ML/graph & feature governance, baselines, anomaly, GNN, calibration, monitoring\\
+Inclusion and service design & accessibility, alternative paths, journey analytics, legitimate-user harm\\
+Security and privacy & architecture, cryptography, authorization, threat model, impact assessment\\
+QA and assurance & requirements, synthetic scenarios, traceability, ablation, release evidence\\
+Product and business & customer discovery, competitive validation, pricing, partnerships, roadmap\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Pilot gates}
+
+\begin{description}
+\item[Gate A --- Problem validity.] At least one material, measurable decision and one exclusion outcome are agreed.
+\item[Gate B --- Data validity.] Evidence semantics, outcome labels, temporal splits, privacy, and provenance are sufficient.
+\item[Gate C --- Technical utility.] The hybrid improves a pre-registered metric against rules and simple baselines.
+\item[Gate D --- Operational utility.] Review capacity, delay, evidence acquisition, and investigator use improve without unacceptable harm.
+\item[Gate E --- Product repeatability.] The same ontology and modules apply to a second customer or domain with bounded adaptation.
+\item[Gate F --- Production assurance.] Rights, security, remedy, rollback, monitoring, ownership, and operating costs are accepted.
+\end{description}
+
+Failure at a gate produces REDESIGN or STOP, not pressure to reinterpret the metrics.
+
+\section{Research publication roadmap}
+
+The thesis can yield several distinct publications rather than one over-broad paper:
+
+\begin{enumerate}
+\item architecture and governance of the Identity Trust \& Inclusion Fabric;
+\item open-set multibiometric coherence and selective evidence acquisition;
+\item privacy-preserving identity/credential graph learning;
+\item systemic exclusion anomaly detection in identity journeys;
+\item CETRA-R remedy and measurable record-repair propagation;
+\item industrial benchmark and assurance protocol.
+\end{enumerate}
+
+The existing GNN paper remains an independent relational benchmark and should be cited rather than absorbed without traceability.
+

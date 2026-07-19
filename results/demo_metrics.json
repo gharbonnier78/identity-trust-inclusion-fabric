@@ -1,0 +1,12 @@
+{
+  "average_precision": 0.99762787727191,
+  "brier": 0.038327621417495565,
+  "exclusion_roc_auc": 0.9872444010090543,
+  "false_alert_rate": 0.07022900763358779,
+  "fraud_rate": 0.05374169315226813,
+  "n_test": 3461,
+  "novel_fraud_recall": 1.0,
+  "recall_at_capacity": 1.0,
+  "review_capacity": 0.12019647500722334,
+  "roc_auc": 0.9998473282442748
+}

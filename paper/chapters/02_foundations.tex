@@ -1,0 +1,80 @@
+\chapter[Scientific, Technical, and Market Foundations]{Scientific, Technical, and Market\\Foundations}
+
+\section{Biometric evidence and multimodal fusion}
+
+Biometric systems transform captured physical or behavioural signals into templates and comparison scores. Their errors are characterized through false-match and false-non-match behaviour, often visualized with ROC or DET curves. Identification adds candidate-list and open-set considerations. These measurements describe matcher behaviour under a test protocol; they are not fraud metrics.
+
+Multimodal fusion combines evidence from face, fingerprint, iris, voice, or other sources. Fusion can occur at sensor, feature, score, rank, or decision level. For industrial integration, score-level fusion is often practical because suppliers can retain proprietary templates while exposing normalized scores, quality, and provenance. Quality-dependent and cost-sensitive fusion research shows why acquiring every modality is not always optimal: sequentially requesting evidence until confidence is sufficient can improve the security--cost trade-off \citep{poh2009quality}.
+
+The proposed Fabric generalizes sequential fusion. It treats an additional biometric, authoritative source, credential proof, or human review as an action with cost, delay, privacy, and expected information gain.
+
+\section{Anomaly detection: modelling normality}
+
+When confirmed anomalies are scarce and heterogeneous, a model can learn the distribution or support of nominal observations. In the density-estimation formulation, a new event is flagged when
+
+\begin{equation}
+p(x_{\mathrm{test}}\mid c)<\varepsilon_c,
+\end{equation}
+
+where $c$ is context such as channel, sensor, issuer, site, credential type, or time regime. The contextual term is essential: what is rare for a controlled office may be routine for a field enrollment station.
+
+Isolation Forest estimates anomaly by the ease with which random partitions isolate a sample \citep{liu2008isolation}. Deep SVDD learns a representation that concentrates nominal samples around a centre \citep{ruff2018deep}. These methods are useful for novel attack or process patterns, but their semantic conclusion is limited:
+
+\begin{equation}
+\text{statistical anomaly}\not\Rightarrow\text{fraud, guilt, or invalid entitlement}.
+\end{equation}
+
+An anomaly is an investigation trigger, a request for evidence, or a signal that the model's regime assumptions require revision.
+
+\section{Supervised learning and selective prediction}
+
+Known fraud patterns can be learned from confirmed labels. Yet labels in identity systems are delayed, selective, and shaped by investigation capacity. A supervised model may learn past detection policy rather than underlying fraud. Weak supervision, expert scenarios, hard negatives, and counterfactual pairs can expand coverage, but generated labels must remain distinguishable from confirmed outcomes \citep{ratner2017snorkel}.
+
+Selective prediction adds abstention. The system automates only where evidence and calibration satisfy a policy; elsewhere it requests information or human judgment. Coverage and risk among automated cases are therefore more informative than aggregate accuracy.
+
+\section{Graph learning and relational fraud}
+
+Fraud is frequently relational. One identity event may appear plausible, while a network of identities reusing devices, addresses, IPs, phones, documents, issuers, or operators reveals coordination. Let $G=(V,E,X)$ contain entities, relations, and node features. A graph convolutional layer can be written
+
+\begin{equation}
+H^{(l+1)}=\sigma\left(\hat{D}^{-1/2}\hat{A}\hat{D}^{-1/2}H^{(l)}W^{(l)}\right),
+\end{equation}
+
+following the normalized message-passing form popularized by \citet{kipf2017semi}. The earlier National Identity Fraud Risk Engine demonstrated, on synthetic ring-held-out data, that relational signal can outperform event-only baselines. That result establishes a research direction, not transferable field performance.
+
+Graph evidence creates special risks. Connections may be legitimate, edges may be noisy, and highly connected infrastructure may reflect a shared office or low-income community rather than collusion. The graph must retain edge provenance, time, purpose, confidence, and alternative explanations.
+
+\section{Verifiable credentials and federated identity}
+
+The W3C Verifiable Credentials Data Model 2.0 formalizes an issuer--holder--verifier ecosystem and tamper-evident claims \citep{w3cvc2025}. OpenID4VCI and OpenID4VP define interoperable issuance and presentation protocols \citep{openid4vci2025,openid4vp2025}. Status lists support privacy-preserving credential status, while confidence methods can strengthen assurance that a presenter is appropriately related to the credential \citep{w3cstatus2025,w3cconfidence2026}.
+
+Cryptography answers bounded questions: who signed, whether content changed, whether a status proof is valid, and what was disclosed. It does not guarantee that the issuer was properly accredited, that the source record was correct, that the holder-binding process was inclusive, or that a relying party requested a proportionate claim. Those are assurance and governance questions for the Fabric.
+
+\section{Market structure}
+
+The market is real and crowded, but segmented. Biometric vendors provide matching, PAD, liveness, and identity proofing. Behavioural-biometric platforms model sessions. Digital-identity platforms combine documents, face, liveness, trusted sources, and fraud signals. Graph-based products identify cross-transaction relationships and fraud rings. ABIS platforms address duplicate enrollment and identification.
+
+The closest public examples include IDEMIA identity proofing, iProov active biometric threat management, Entrust/Onfido document and biometric fraud analytics, BioCatch behavioural intelligence, Mitek's layered identity platform, and Jumio 360 Fraud Analytics. Jumio publicly describes graph-database and machine-learning analysis of cross-transaction clusters \citep{jumio360}; this directly invalidates any novelty claim based solely on using graphs for identity fraud.
+
+The proposed whitespace is the governed combination in 
+\cref{tab:whitespace}.
+
+\begin{table}[htbp]
+\centering
+\caption{Candidate industrial differentiation.}
+\label{tab:whitespace}
+\begin{tabularx}{\textwidth}{p{36mm}YY}
+\toprule
+Dimension & Common market emphasis & Proposed Fabric emphasis\\
+\midrule
+Biometrics & Face onboarding, liveness, document check & Vendor-neutral fingerprint, face, optional iris, quality, and provenance\\
+Decision unit & One onboarding or authentication & Purpose-bound identity or credential assurance across lifecycle\\
+Deployment & Platform or cloud service & Sovereign, on-premise, federated, restricted-domain capable\\
+Learning & Known fraud or vendor threat intelligence & Known fraud + open-set anomaly + graph + process exclusion\\
+Human role & Manual review queue & Selective action, operator protection, appeal, and record repair\\
+Social outcome & Conversion and fraud loss & Fraud, exclusion, accessibility, delay, and remedy effectiveness\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The market analysis is a July 2026 public-source snapshot, not a complete procurement evaluation. Product claims must be tested through demonstrations, technical questionnaires, customer references, independent evaluation, and legal review.

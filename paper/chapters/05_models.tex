@@ -1,0 +1,117 @@
+\chapter{Hybrid Models and Constrained Decision Policy}
+
+\section{Feature families}
+
+For an event $i$, the research vector is partitioned by meaning and governance:
+
+\begin{equation}
+x_i=[x_i^{bio},x_i^{cred},x_i^{device},x_i^{beh},x_i^{graph},x_i^{process},x_i^{prov}].
+\end{equation}
+
+Biometric evidence includes face, fingerprint, optional iris scores, per-modality quality, failure-to-acquire, and PAD. Credential evidence includes signature, issuer trust, status, schema, expiry, accreditation, and holder-binding confidence. Device and behaviour include integrity, reuse, velocity, and session indicators. Graph features summarize scoped relational structure. Process features include attempts, duration, abandonment, manual routing, alternative path, and remedy state. Provenance features describe versions and component trust.
+
+Protected or sensitive attributes are not automatically model features. They may be required for controlled fairness evaluation, but their availability, separation, purpose, and access require explicit governance.
+
+\section{Known-fraud model}
+
+The supervised model estimates
+
+\begin{equation}
+\hat{p}_S(x)=P(Y=fraud\mid x,D_L),
+\end{equation}
+
+where $D_L$ contains labelled cases with source and certainty. Suitable interpretable baselines include logistic regression and constrained decision trees. Random forests or gradient boosting can model nonlinear interactions, while calibration maps model scores to decision-useful probabilities.
+
+Evaluation uses temporal or project separation rather than random event splitting alone. All events from a fraud ring, credential campaign, device family, or issuer incident must remain in one partition where the claim concerns generalization.
+
+\section{Novelty model}
+
+The novelty component is trained primarily on nominal data:
+
+\begin{equation}
+a(x,c)=-\log \hat{p}(x\mid c)
+\end{equation}
+
+or, for Isolation Forest, on normalized isolation score. Context $c$ prevents a minority operational regime from being labelled anomalous merely because it is less frequent. Candidate contexts include channel, site, sensor family, credential type, issuer category, and time regime.
+
+Novelty must expose contributing deviations: for example, high face match paired with implausibly low quality, active credential paired with invalid issuer accreditation, or high process burden for a legitimate low-risk journey.
+
+\section{Graph risk}
+
+The graph model estimates $\hat{p}_G(v,G_t)$ from topology, temporal edges, and permitted features. Baselines are required before a GNN:
+
+\begin{itemize}
+\item degree and shared-attribute counts;
+\item rule score for impossible or excessive reuse;
+\item logistic regression or MLP on engineered graph features;
+\item GCN, GraphSAGE, or heterogeneous GNN.
+\end{itemize}
+
+A GNN is justified only if it outperforms strong structural baselines under ring-held-out and time-held-out evaluation, retains calibrated utility, and provides investigator-usable explanations. Edge ablations test whether the model relies on a defensible relation rather than leakage.
+
+\section{Inclusion-risk model}
+
+The inclusion model is deliberately separate from fraud inference. Among legitimate or subsequently cleared journeys, it estimates the probability of excessive burden:
+
+\begin{equation}
+q_E=P(\text{repeat, delay, abandonment, inaccessible path, or unresolved remedy}\mid c).
+\end{equation}
+
+An unsupervised version compares process duration, attempts, capture failures, and manual routing with context-specific baselines. A supervised version can learn from confirmed process failures and complaints. Aggregated monitoring identifies site, device, issuer, channel, language, accessibility, and temporal patterns where lawful and proportionate.
+
+The output is a process-improvement or support signal. It must not be used to reduce a person's entitlement or increase suspicion because that person encountered difficulty.
+
+\section{Fusion}
+
+A simple research fusion is
+
+\begin{equation}
+r=w_S\tilde{p}_S+w_A\tilde{a}+w_G\tilde{p}_G+w_R r_{rules},
+\end{equation}
+
+where each component is normalized and calibrated on validation data. More advanced alternatives include stacking, Bayesian networks, mixture-of-experts, or evidential reasoning. Missing modalities require explicit treatment; zero must not silently mean missing.
+
+Uncertainty is represented separately from risk. Low risk with high uncertainty may require more evidence. High risk with well-understood evidence may require a policy-specific review. The decision surface is therefore two-dimensional or higher:
+
+\begin{equation}
+a=\pi(r,u,q_E,c,capacity).
+\end{equation}
+
+\section{Action bands}
+
+The baseline policy uses bands:
+
+\begin{table}[htbp]
+\centering
+\caption{Illustrative action bands; values are not production thresholds.}
+\begin{tabularx}{\textwidth}{p{28mm}p{28mm}Y}
+\toprule
+Risk band & Default action & Required control\\
+\midrule
+$r<0.35$ & Approve & retain evidence provenance and monitor drift\\
+$0.35\le r<0.55$ & Monitor & no extra citizen burden unless another control requires it\\
+$0.55\le r<0.72$ & Step-up & select least intrusive evidence expected to reduce uncertainty\\
+$0.72\le r<0.90$ & Human review & show evidence, alternatives, limitations, and policy version\\
+$r\ge0.90$ & Block or escalate candidate & require rule-authorized corroboration; anomaly alone is insufficient\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Thresholds are chosen under review-capacity and cost constraints, never copied from the synthetic demonstrator.
+
+\section{Metrics}
+
+The metric suite separates layers:
+
+\begin{itemize}
+\item matcher: FMR/FNMR, FPIR/FNIR, TMR at target FMR, ROC/DET, failure to acquire;
+\item fraud ranking: ROC AUC, average precision, recall at 5/10/20\% review, precision in the review queue;
+\item novelty: held-out attack recall, time-to-detection, false-alert rate by regime;
+\item calibration: Brier score, reliability curve, expected calibration error;
+\item action: automation coverage, selective risk, evidence cost, human hours, latency;
+\item inclusion: completion, attempts, delay, abandonment, alternative-path success, unresolved remedy;
+\item lifecycle: drift, version sensitivity, rollback success, evidence and correction propagation.
+\end{itemize}
+
+Accuracy is not a primary metric under rare fraud because an always-normal model can appear accurate while being useless.
+
