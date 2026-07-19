@@ -51,6 +51,7 @@ make verify
 - `docs/MARKET_LANDSCAPE.md`
 - `docs/REQUIREMENTS_CANVAS.md`
 - `docs/RESEARCH_TRACEABILITY.md`
+- `docs/THREAD_AND_ARTIFACT_INVENTORY.md`
 - `results/demo_metrics.json`
 
 ## Research lineage
@@ -69,4 +70,3 @@ The platform must never produce a universal citizen score or infer guilt from an
 ## Status
 
 Version 0.1.0 is a research and product-discovery package. It is not peer reviewed and must be validated with lawful, representative, customer-specific evidence before any operational use.
-
